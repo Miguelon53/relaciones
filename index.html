@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🔧 Refacciones Álvarez</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e6f7ff;
+      color: #05445E;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #189AB4;
+      font-size: 2.2em;
+    }
+
+    form {
+      background-color: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      font-size: 1.2em;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      font-size: 1em;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #189AB4;
+      color: white;
+      font-size: 1.2em;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      margin-top: 20px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #05445E;
+    }
+
+    .confirmacion {
+      margin-top: 20px;
+      font-size: 1.3em;
+      color: green;
+      text-align: center;
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+
+      form {
+        padding: 15px;
+      }
+
+      h1 {
+        font-size: 1.7em;
+      }
+
+      button {
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>🔧 Refacciones Álvarez</h1>
+
+  <form id="registroForm">
+    <label for="nombre">👤 Nombre:</label>
+    <input type="text" id="nombre" name="nombre" required />
+
+    <label for="edad">🎂 Edad:</label>
+    <input type="number" id="edad" name="edad" required />
+
+    <label for="herramienta">🛠️ Herramienta:</label>
+    <input type="text" id="herramienta" name="herramienta" required />
+
+    <button type="submit">✅ Registrar herramienta</button>
+  </form>
+
+  <div class="confirmacion" id="mensajeExito">
+    🎉✅ ¡Registrada con éxito! 🎉
+  </div>
+
+  <script>
+    const formulario = document.getElementById("registroForm");
+    const mensaje = document.getElementById("mensajeExito");
+
+    formulario.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const data = {
+        nombre: formulario.nombre.value,
+        edad: formulario.edad.value,
+        herramienta: formulario.herramienta.value,
+      };
+
+      fetch("https://script.google.com/macros/s/AKfycbwFkHpxC71sKmAte9qb4Xm8skgGcu86Xfx7FlPJzNg99KibPYuo4DnIhUuLDBtLFHVvQw/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
+
+      formulario.reset();
+      mensaje.style.display = "block";
+      setTimeout(() => mensaje.style.display = "none", 5000);
+    });
+  </script>
+</body>
+</html>
